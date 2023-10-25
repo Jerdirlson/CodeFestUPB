@@ -3,6 +3,7 @@ package model;
 
 import app.ConfigLoader;
 import client.Client;
+import controller.OperadorController;
 import entidades.Operario;
 
 /**
@@ -31,6 +32,7 @@ public class ModelLogin {
 
         try {
             operario = cliente.login(email, password);
+            //OperadorController operadorController = new OperadorController();
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
         }
