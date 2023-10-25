@@ -39,5 +39,43 @@ public class ServiceOperario extends UnicastRemoteObject implements SkeletonOper
 
         return estudiante;
     }
+
+    @Override
+    public boolean insertarCita(int idEstudiante, int idTutor) throws RemoteException {
+        boolean bool = false;
+        try {
+            bool = Conection.insertarCita(idEstudiante, idTutor);
+        } catch (Exception e) {
+            System.out.println("Error" + e.getMessage());
+        }
+
+        return bool;
+    }
+
+    @Override
+    public boolean cancelarCita(int idEstudiante) throws RemoteException {
+        boolean bool = false;
+        try {
+            bool = Conection.cancelarCita(idEstudiante);
+        } catch (Exception e) {
+            System.out.println("Error" + e.getMessage());
+        }
+
+        return bool;
+    }
+
+    @Override
+    public boolean insertarEstudiante(Estudiante estudiante) throws RemoteException {
+        boolean bool = false;
+        try {
+            bool = Conection.insertarEstudiante(estudiante);
+        } catch (Exception e) {
+            System.out.println("Error" + e.getMessage());
+        }
+
+        return bool;
+    }
+
+    
     
 }
