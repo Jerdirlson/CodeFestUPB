@@ -119,6 +119,37 @@ public class Conection {
         return estudiante;
     }
 
+    public static Estudiante getEstudianteWhitPassword(String correo, String password){
+        Estudiante estudiante = new Estudiante();
+        try {
+            c = getConecction();
+            cstm = c.prepareCall("SELECT * FROM estudiantes WHERE emailEstudiante = ? AND password = ? ");
+            cstm.setString(1, correo);
+            cstm.setString(2, password);
+            ResultSet rs = cstm.executeQuery();
+
+            if (rs.next()) {
+                estudiante.setId(rs.getInt("idEstudiante"));
+                estudiante.setEmailEstudiante(rs.getString("emailEstudiante"));
+                estudiante.setNombre(rs.getString("nombreEstudiante"));
+                estudiante.setApellido(rs.getString("apellidoEstudiante"));
+                estudiante.setSemestre(rs.getInt("semestreEstudiante"));
+                estudiante.setDiscapacidad(rs.getBoolean("discapacidadEstudiante"));
+                estudiante.setPassword(rs.getString("password"));
+            }
+    
+            rs.close(); 
+            cstm.close();
+            c.close(); 
+
+            
+        } catch (Exception e) {
+            System.out.println("Error en obtener el usuario " + e.getMessage());
+        }
+
+        return estudiante;
+    }
+
 
     public static boolean insertarCita(int idEstudiante, int idTutor){
         boolean result = false;
