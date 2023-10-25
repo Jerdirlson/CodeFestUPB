@@ -66,7 +66,7 @@ public class Conection {
         Operario operario = new Operario();
         try {
             c = getConecction();
-            cstm = c.prepareCall("SELECT * FROM user WHERE emailUser = ? AND contraseñaUser = ?");
+            cstm = c.prepareCall("SELECT * FROM user WHERE emailUser = ? AND contaseñaUser = ?");
             cstm.setString(1, correo);
             cstm.setString(2, password);
             ResultSet rs = cstm.executeQuery();

@@ -8,9 +8,9 @@ public class StartController {
     public StartController() {
         ViewLogin login = new ViewLogin();
         ModelLogin model = new ModelLogin();
-        login.welcome.setOnAction(actionEvent -> {
+        login.submit.setOnAction(actionEvent -> {
             if (model.getAuthenticatedUser(login.usuario.getText(), login.password.getText()).getNombre() != null) {
-                login.login();
+                System.out.println("ESTA REGISTRADO");
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
