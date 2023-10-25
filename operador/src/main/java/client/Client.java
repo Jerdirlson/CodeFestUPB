@@ -7,6 +7,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import entidades.Estudiante;
 import entidades.Operario;
 
 public class Client implements SkeletonOperario {
@@ -45,6 +46,39 @@ public class Client implements SkeletonOperario {
         } catch (MalformedURLException | RemoteException | NotBoundException e) {
             e.printStackTrace();
             return user;
+        }
+    }
+
+    @Override
+    public Estudiante getEstudiante(String email) throws RemoteException {
+        try {
+            service = (SkeletonOperario) Naming.lookup(url);
+            return service.getEstudiante(email);
+        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public boolean addEstudiante(Estudiante estudiante) throws RemoteException {
+        try {
+            service = (SkeletonOperario) Naming.lookup(url);
+            return service.addEstudiante(estudiante);
+        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addCita(int idEstudiante, int idTutor) throws RemoteException {
+        try {
+            service = (SkeletonOperario) Naming.lookup(url);
+            return service.addCita(idEstudiante , idTutor);
+        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

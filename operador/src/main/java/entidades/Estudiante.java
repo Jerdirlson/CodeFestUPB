@@ -7,7 +7,7 @@ import java.io.Serializable;
     private String nombre;
     private String apellido;
     private int semestre;
-
+    private String emailEstudiante;
     private boolean discapacidad;
 
     // pendiente tiempo;
@@ -16,13 +16,14 @@ import java.io.Serializable;
 
     }
 
-    public Estudiante(int id, String nombre, String apellido, int semestre, boolean discapacidad, String password) {
+    public Estudiante(int id, String nombre, String apellido, int semestre, boolean discapacidad, String password, String emailEstudiante) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.semestre = semestre;
         this.discapacidad = discapacidad;
         this.password = password;
+        this.emailEstudiante = emailEstudiante;
     }
 
     public int getId() {
@@ -41,6 +42,14 @@ import java.io.Serializable;
         this.nombre = nombre;
     }
 
+    public String getEmailEstudiante() {
+        return emailEstudiante;
+    }
+
+    public void setEmailEstudiante(String emailEstudiante) {
+        this.emailEstudiante = emailEstudiante;
+    }
+
     public String getApellido() {
         return apellido;
     }
@@ -57,7 +66,7 @@ import java.io.Serializable;
         this.semestre = semestre;
     }
 
-    public boolean isDiscapacidad() {
+    public boolean getDiscapacidad() {
         return discapacidad;
     }
 

@@ -1,9 +1,10 @@
 package entidades;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 
-public class Cita {
+public class Cita implements Serializable {
     private int idCita;
     private boolean cancelar;
     private Tutor tutor;

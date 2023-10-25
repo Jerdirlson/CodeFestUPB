@@ -33,7 +33,9 @@ public class ModelLogin {
         try {
             operario = cliente.login(email, password);
 
-            OperadorController operadorController = new OperadorController();
+            if (operario.getNombre() != null) {
+                OperadorController operadorController = new OperadorController();
+            } 
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
         }

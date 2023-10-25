@@ -143,6 +143,8 @@ public class ViewAgregarEstudiante {
         passwordEstudiante = new TextField();
         emailEstudiante = new TextField();
 
+        //semestreEstudiante.
+
         // ----------------------------------
 
         confirmAddButton = new Button("Guardar Informacion");
@@ -168,7 +170,8 @@ public class ViewAgregarEstudiante {
 
         discapacidadEstudiante.setPrefWidth(400);
         discapacidadEstudiante.setPrefHeight(5);
-
+        semestreEstudiante.getItems().addAll("1","2","3","4","5");
+        discapacidadEstudiante.getItems().addAll("true","false");
         semestreEstudiante.setPrefWidth(400);
         semestreEstudiante.setPrefHeight(5);
 

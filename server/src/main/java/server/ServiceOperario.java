@@ -4,14 +4,16 @@ import interfaces.SkeletonOperario;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+
 import database.Conection;
 import entidades.Estudiante;
 import entidades.Operario;
 
-public class ServiceOperario extends UnicastRemoteObject implements SkeletonOperario{
+public class ServiceOperario extends UnicastRemoteObject implements SkeletonOperario {
 
     public ServiceOperario() throws RemoteException {
-        
+
     }
 
     @Override
@@ -41,47 +43,23 @@ public class ServiceOperario extends UnicastRemoteObject implements SkeletonOper
     }
 
     @Override
-    public boolean addCita(int idEstudiante, int idTutor) throws RemoteException {
-        boolean bool = false;
+    public boolean addEstudiante(Estudiante estudiante) throws RemoteException {
         try {
-            bool = Conection.insertarCita(idEstudiante, idTutor);
+            return Conection.insertarEstudiante(estudiante);
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
         }
-
-        return bool;
+        return false;
     }
-
-    // @Override
-    // public boolean addEstudiante(Estudiante estudiante) throws RemoteException {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'addEstudiante'");
-    // }
-
-    // @Override
-    // public boolean cancelarCita(int idEstudiante) throws RemoteException {
-    //     boolean bool = false;
-    //     try {
-    //         bool = Conection.cancelarCita(idEstudiante);
-    //     } catch (Exception e) {
-    //         System.out.println("Error" + e.getMessage());
-    //     }
-
-    //     return bool;
-    // }
 
     @Override
-    public boolean addEstudiante(Estudiante estudiante) throws RemoteException {
-        boolean bool = false;
+    public boolean addCita(int idEstudiante, int idTutor) throws RemoteException {
         try {
-            bool = Conection.insertarEstudiante(estudiante);
+            return Conection.insertarCita(idEstudiante, idTutor);
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
         }
-
-        return bool;
+        return false;
     }
 
-    
-    
 }

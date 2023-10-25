@@ -1,7 +1,8 @@
 package entidades;
 
+import java.io.Serializable;
 
-public class Tutor {
+public class Tutor implements Serializable{
     private int id;
     private String nombre;
     private String apellido;
