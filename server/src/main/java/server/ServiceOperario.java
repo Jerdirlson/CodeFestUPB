@@ -41,7 +41,7 @@ public class ServiceOperario extends UnicastRemoteObject implements SkeletonOper
     }
 
     @Override
-    public boolean insertarCita(int idEstudiante, int idTutor) throws RemoteException {
+    public boolean addCita(int idEstudiante, int idTutor) throws RemoteException {
         boolean bool = false;
         try {
             bool = Conection.insertarCita(idEstudiante, idTutor);
@@ -52,20 +52,26 @@ public class ServiceOperario extends UnicastRemoteObject implements SkeletonOper
         return bool;
     }
 
-    @Override
-    public boolean cancelarCita(int idEstudiante) throws RemoteException {
-        boolean bool = false;
-        try {
-            bool = Conection.cancelarCita(idEstudiante);
-        } catch (Exception e) {
-            System.out.println("Error" + e.getMessage());
-        }
+    // @Override
+    // public boolean addEstudiante(Estudiante estudiante) throws RemoteException {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'addEstudiante'");
+    // }
 
-        return bool;
-    }
+    // @Override
+    // public boolean cancelarCita(int idEstudiante) throws RemoteException {
+    //     boolean bool = false;
+    //     try {
+    //         bool = Conection.cancelarCita(idEstudiante);
+    //     } catch (Exception e) {
+    //         System.out.println("Error" + e.getMessage());
+    //     }
+
+    //     return bool;
+    // }
 
     @Override
-    public boolean insertarEstudiante(Estudiante estudiante) throws RemoteException {
+    public boolean addEstudiante(Estudiante estudiante) throws RemoteException {
         boolean bool = false;
         try {
             bool = Conection.insertarEstudiante(estudiante);

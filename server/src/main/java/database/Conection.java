@@ -159,7 +159,7 @@ public class Conection {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
             // Primero, inserta la dirección en la tabla tbl_direccion
-            String insertDireccionSQL = "INSERT INTO cita (cancelada, fecha, llega, idEstudiante, idTutor) VALUES (?, ?, ?, ?, ?)";
+            String insertDireccionSQL = "INSERT INTO cita (cancelada, feha, llega, idEstudiante, idtTutor) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement direccionPS = c.prepareStatement(insertDireccionSQL, Statement.RETURN_GENERATED_KEYS)) {
                 direccionPS.setBoolean(1, false);
                 direccionPS.setTimestamp(2, timestamp);
