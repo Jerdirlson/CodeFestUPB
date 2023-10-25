@@ -10,7 +10,7 @@ public class StartController {
         ModelLogin model = new ModelLogin();
         login.submit.setOnAction(actionEvent -> {
             if (model.getAuthenticatedUser(login.usuario.getText(), login.password.getText()).getNombre() != null) {
-                System.out.println("ESTA REGISTRADO");
+                login.window.close();
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
