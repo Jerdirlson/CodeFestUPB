@@ -12,4 +12,7 @@ public interface SkeletonOperario extends Remote{
 
     public Estudiante getEstudiante(String email) throws RemoteException;
 
+    public boolean addEstudiante(Estudiante estudiante) throws RemoteException; 
+
+    public boolean addCita(int idEstudiante, int idTutor) throws RemoteException;
 }

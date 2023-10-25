@@ -143,6 +143,8 @@ public class ViewAgregarEstudiante {
         passwordEstudiante = new TextField();
         emailEstudiante = new TextField();
 
+        //semestreEstudiante.
+
         // ----------------------------------
 
         confirmAddButton = new Button("Guardar Informacion");

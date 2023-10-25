@@ -19,8 +19,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 /**
  * Class that represents the whole 'moduleOperador' view
+ * 
  * @author Juan David Patiño Parra
  */
 public class ViewOperador {
@@ -57,9 +59,9 @@ public class ViewOperador {
     // ----
 
     // ---
-    public ListView<String> listView;
-    public Button deleteProducto;
-    public ObservableList<String> items;
+    public ListView<String> listOfInfoEstudiante;
+    public ObservableList<String> informacionEstudiante;
+    // ---
 
     public ListView<String> estudiantesFoundedList;
     public ObservableList<String> estudiantesFounded;
@@ -93,6 +95,8 @@ public class ViewOperador {
 
     // TextField
 
+    public TextField idEstudianteTextLabel;
+    public Button buttonAgregarCita;
     // Imagenes
     ImageView logo;
     ImageView logoClientes;
@@ -134,10 +138,10 @@ public class ViewOperador {
         initOperador();
         initAgregarCita();
         intiCancelarCita();
-        //initAgregarEstudiante();
-        //initBuscarCliente();
-        //initShowMenu();
-        //initShowConfirmarPedido();
+        // initAgregarEstudiante();
+        // initBuscarCliente();
+        // initShowMenu();
+        // initShowConfirmarPedido();
     }
 
     public void initOperador() {
@@ -179,7 +183,7 @@ public class ViewOperador {
         panelPrincipal.setAlignment(selector, Pos.CENTER); // establecer un margen (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
 
         optionPanel = new Scene(panelPrincipal, 1080, 720);
-        //optionPanel.getStylesheets().add("style.css");
+        // optionPanel.getStylesheets().add("style.css");
         window.setScene(optionPanel);
         window.setTitle("CAC-UPB"); // Estableciendo titulo
         window.show();
@@ -220,7 +224,7 @@ public class ViewOperador {
                                                                               // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
 
         clientesView = new Scene(panelPrincipalClientes, 1080, 720);
-      //  clientesView.getStylesheets().add("style.css");
+        // clientesView.getStylesheets().add("style.css");
 
         /*
          * window.setScene(clientesView);
@@ -228,7 +232,6 @@ public class ViewOperador {
          * window.show();
          */
     }
-
 
     public void initAgregarCita() {
         StackPane buscarClienteContendor = new StackPane();
@@ -263,15 +266,17 @@ public class ViewOperador {
         //
         buscarClienteContendor.setMargin(busquedaDeEstudiantes, new Insets(300, 500, 400, 300)); // establecer un margen
         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        buscarClienteContendor.setMargin(estudiantesFoundedList, new Insets(350, 500, 200, 300)); // establecer un margen
+        buscarClienteContendor.setMargin(estudiantesFoundedList, new Insets(350, 500, 200, 300)); // establecer un
+                                                                                                  // margen
         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
         buscarClienteContendor.setMargin(goBackToOption, new Insets(500, 550, 0, 0)); // establecer un margen
         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
         estudiantesFoundedList.toFront();
         buscarEstudianteView = new Scene(buscarClienteContendor, 1080, 720);
-       // buscarEstudianteView.getStylesheets().add("style.css");
+        // buscarEstudianteView.getStylesheets().add("style.css");
     }
-        public void intiCancelarCita() {
+
+    public void intiCancelarCita() {
         StackPane buscarClienteContendor = new StackPane();
         buscarClienteContendor.setBackground(fondo);
         // -------------------------
@@ -293,6 +298,22 @@ public class ViewOperador {
         estudiantesFoundedList.setPrefHeight(40);
         estudiantesFoundedList.setPrefWidth(40);
 
+        // AGREGAR CITAS
+        idEstudianteTextLabel = new TextField("Id");
+        buttonAgregarCita = new Button("Agendar Cita");
+
+        buttonAgregarCita.setScaleX(2.2);
+        buttonAgregarCita.setScaleY(2.2);
+
+        idEstudianteTextLabel.setPrefHeight(10);
+        idEstudianteTextLabel.setPrefWidth(300);
+        buscarClienteContendor.getChildren().addAll(idEstudianteTextLabel, buttonAgregarCita);
+
+        // .-------
+        buscarClienteContendor.setMargin(buttonAgregarCita, new Insets(300, 0, 0, 500)); // establecer un margen
+        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
+        buscarClienteContendor.setMargin(idEstudianteTextLabel, new Insets(200, 300, 300, 650)); // establecer un margen
+        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
         // -------------------------
         rectangleToDecorateBuscadorDeClientes.setFill(colorBeige);
         rectangleToDecorateBuscadorDeClientes.setStroke(Color.BLACK); // Color del borde
@@ -304,15 +325,17 @@ public class ViewOperador {
         //
         buscarClienteContendor.setMargin(busquedaDeEstudiantes, new Insets(300, 500, 400, 300)); // establecer un margen
         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        buscarClienteContendor.setMargin(estudiantesFoundedList, new Insets(350, 500, 200, 300)); // establecer un margen
+        buscarClienteContendor.setMargin(estudiantesFoundedList, new Insets(350, 500, 200, 300)); // establecer un
+                                                                                                  // margen
         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
         buscarClienteContendor.setMargin(goBackToOption, new Insets(500, 550, 0, 0)); // establecer un margen
         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
         estudiantesFoundedList.toFront();
+        idEstudianteTextLabel.toFront();
+        buttonAgregarCita.toFront();
         buscarEstudianteView = new Scene(buscarClienteContendor, 1080, 720);
-       // buscarEstudianteView.getStylesheets().add("style.css");
+        // buscarEstudianteView.getStylesheets().add("style.css");
     }
-
 
     public void switchScene(Scene scene) {
         window.setScene(scene);

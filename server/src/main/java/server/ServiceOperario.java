@@ -4,14 +4,16 @@ import interfaces.SkeletonOperario;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+
 import database.Conection;
 import entidades.Estudiante;
 import entidades.Operario;
 
-public class ServiceOperario extends UnicastRemoteObject implements SkeletonOperario{
+public class ServiceOperario extends UnicastRemoteObject implements SkeletonOperario {
 
     public ServiceOperario() throws RemoteException {
-        
+
     }
 
     @Override
@@ -39,5 +41,25 @@ public class ServiceOperario extends UnicastRemoteObject implements SkeletonOper
 
         return estudiante;
     }
-    
+
+    @Override
+    public boolean addEstudiante(Estudiante estudiante) throws RemoteException {
+        try {
+            return Conection.insertarEstudiante(estudiante);
+        } catch (Exception e) {
+            System.out.println("Error" + e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addCita(int idEstudiante, int idTutor) throws RemoteException {
+        try {
+            return Conection.insertarCita(idEstudiante, idTutor);
+        } catch (Exception e) {
+            System.out.println("Error" + e.getMessage());
+        }
+        return false;
+    }
+
 }
