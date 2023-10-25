@@ -50,11 +50,7 @@ public class ViewOperador {
     public Button confirmarPedido;
     public TextField barraDeBusqueda;
     // --
-    public Label pedidoText = new Label();
-    public Label domicilioText = new Label();
-    public Label precioText = new Label();
-    public Label impuestoText = new Label();
-    public Label precioTotalText = new Label();
+
     // --
     public Button sendPedidoToCocinaButton;
     public Button backToMenu;
@@ -100,7 +96,9 @@ public class ViewOperador {
     // Imagenes
     ImageView logo;
     ImageView logoClientes;
-    Image picture = new Image("file:src\\\\main\\\\java\\\\images\\\\logoUPB.png");
+    Image picture = new Image("file:src\\main\\java\\images\\logoUPB.png");
+    Image fondoImagen = new Image("file:src\\main\\java\\images\\IMAGENQUESIRVE.jpg");
+    ImageView fondoUPB = new ImageView(fondoImagen);
 
     // Figuras
     Rectangle rectangleToDecorate;
@@ -118,8 +116,12 @@ public class ViewOperador {
     Color colorOrange = Color.web(orange);
 
     // Background
-    BackgroundFill colorFondo = new BackgroundFill(colorSand, null, null);
-    Background fondo = new Background(colorFondo);
+    BackgroundImage backgroundImage = new BackgroundImage(fondoImagen,
+            BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+            BackgroundPosition.DEFAULT,
+            new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+
+    Background fondo = new Background(backgroundImage);
 
     public ViewOperador() {
         // -----------------------
@@ -131,6 +133,7 @@ public class ViewOperador {
         logoClientes = new ImageView(picture);
         initOperador();
         initAgregarCita();
+        intiCancelarCita();
         //initAgregarEstudiante();
         //initBuscarCliente();
         //initShowMenu();
@@ -217,7 +220,7 @@ public class ViewOperador {
                                                                               // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
 
         clientesView = new Scene(panelPrincipalClientes, 1080, 720);
-        clientesView.getStylesheets().add("style.css");
+      //  clientesView.getStylesheets().add("style.css");
 
         /*
          * window.setScene(clientesView);
@@ -266,7 +269,48 @@ public class ViewOperador {
         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
         estudiantesFoundedList.toFront();
         buscarEstudianteView = new Scene(buscarClienteContendor, 1080, 720);
-        buscarEstudianteView.getStylesheets().add("style.css");
+       // buscarEstudianteView.getStylesheets().add("style.css");
+    }
+        public void intiCancelarCita() {
+        StackPane buscarClienteContendor = new StackPane();
+        buscarClienteContendor.setBackground(fondo);
+        // -------------------------
+        goBackToOption = new Button("Atras");
+        goBackToOption.setId("buttonBack");
+        busquedaDeEstudiantes = new TextField("Buscar Estudiante");
+        Rectangle rectangleToDecorateBuscadorDeClientes = new Rectangle(700, 400);
+        estudiantesFounded = FXCollections.observableArrayList();
+
+        // Crear un ListView y configurarlo con la lista observable
+        estudiantesFoundedList = new ListView<>(estudiantesFounded);
+        // Propiedades
+        goBackToOption.setScaleX(2.5);
+        goBackToOption.setScaleY(2.5);
+
+        busquedaDeEstudiantes.setPrefHeight(10);
+        busquedaDeEstudiantes.setPrefWidth(400);
+
+        estudiantesFoundedList.setPrefHeight(40);
+        estudiantesFoundedList.setPrefWidth(40);
+
+        // -------------------------
+        rectangleToDecorateBuscadorDeClientes.setFill(colorBeige);
+        rectangleToDecorateBuscadorDeClientes.setStroke(Color.BLACK); // Color del borde
+        rectangleToDecorateBuscadorDeClientes.setStrokeWidth(1); // Grosor del borde
+        rectangleToDecorateBuscadorDeClientes.toBack();
+        buscarClienteContendor.getChildren().addAll(estudiantesFoundedList);
+        buscarClienteContendor.getChildren().addAll(rectangleToDecorateBuscadorDeClientes, goBackToOption,
+                busquedaDeEstudiantes);
+        //
+        buscarClienteContendor.setMargin(busquedaDeEstudiantes, new Insets(300, 500, 400, 300)); // establecer un margen
+        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
+        buscarClienteContendor.setMargin(estudiantesFoundedList, new Insets(350, 500, 200, 300)); // establecer un margen
+        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
+        buscarClienteContendor.setMargin(goBackToOption, new Insets(500, 550, 0, 0)); // establecer un margen
+        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
+        estudiantesFoundedList.toFront();
+        buscarEstudianteView = new Scene(buscarClienteContendor, 1080, 720);
+       // buscarEstudianteView.getStylesheets().add("style.css");
     }
 
 

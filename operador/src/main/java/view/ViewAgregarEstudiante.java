@@ -12,6 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -66,7 +70,9 @@ public class ViewAgregarEstudiante {
     // Imagenes
     ImageView logo;
     ImageView logoClientes;
-    Image picture = new Image("file:src\\\\main\\\\java\\\\images\\\\logoUPB.png");
+    Image picture = new Image("file:src\\main\\java\\images\\logoUPB.png");
+    Image fondoImagen = new Image("file:src\\main\\java\\images\\IMAGENQUESIRVE.jpg");
+    ImageView fondoUPB = new ImageView(fondoImagen);
 
     // Figuras
     Rectangle rectangleToDecorate;
@@ -84,8 +90,12 @@ public class ViewAgregarEstudiante {
     Color colorOrange = Color.web(orange);
 
     // Background
-    BackgroundFill colorFondo = new BackgroundFill(colorSand, null, null);
-    Background fondo = new Background(colorFondo);
+    BackgroundImage backgroundImage = new BackgroundImage(fondoImagen,
+            BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+            BackgroundPosition.DEFAULT,
+            new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+
+    Background fondo = new Background(backgroundImage);
 
     public ViewAgregarEstudiante() {
         window = new Stage();

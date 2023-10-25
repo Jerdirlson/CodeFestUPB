@@ -20,16 +20,16 @@ public class PriorityQueue {
  * @return
  */
     public static boolean addToCola(Estudiante estudiantee) {
-        if (estudiantee.isDiscapacidad() && estudiantee.getSemestre() == 1) {
+        if (estudiantee.getDiscapacidad() && estudiantee.getSemestre() == 1) {
             colaPriority.addToCola(0, estudiantee);
             return true;
-        } else if(estudiantee.isDiscapacidad()){
+        } else if(estudiantee.getDiscapacidad()){
             colaPriority.addToCola(1, estudiantee);
         }
         else if (estudiantee.getSemestre() == 1) {
             colaPriority.addToCola(2, estudiantee);
             return true;
-        } else if (!estudiantee.isDiscapacidad() && estudiantee.getSemestre() != 1) {
+        } else if (!estudiantee.getDiscapacidad() && estudiantee.getSemestre() != 1) {
             colaPriority.addToCola(3, estudiantee);
             return true;
         }

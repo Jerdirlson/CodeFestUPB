@@ -35,13 +35,18 @@ public class OperadorController {
                             ViewAgregarEstudiante viewAgregarEstudiante = new ViewAgregarEstudiante();
 
                             viewAgregarEstudiante.confirmAddButton.setOnAction(actionEvent -> {
-                                Alert confirmAlert = new Alert(Alert.AlertType.INFORMATION);
-                                confirmAlert.setTitle("WOw!");
-                                confirmAlert.setHeaderText("Estudiante Agregado ");
-                                confirmAlert.setContentText(
-                                        "Felicidades al nuevo estudiante!" + "\n"
-                                                + "CAC-UPB...");
-                                viewAgregarEstudiante.window.close();
+                                if (false) { // metodo para insertar estudiante
+
+                                } else {
+                                    Alert confirmAlert = new Alert(Alert.AlertType.INFORMATION);
+                                    confirmAlert.setTitle("WOw!");
+                                    confirmAlert.setHeaderText("Estudiante Agregado ");
+                                    confirmAlert.setContentText(
+                                            "Felicidades al nuevo estudiante!" + "\n"
+                                                    + "CAC-UPB...");
+                                    confirmAlert.showAndWait();
+                                    viewAgregarEstudiante.window.close();
+                                }
 
                             });
                         }
