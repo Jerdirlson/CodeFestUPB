@@ -62,7 +62,7 @@ public class Conection {
 
     
     
-    public static Operario getUser(String correo, String password){
+    public static Operario getOperario(String correo, String password){
         Operario operario = new Operario();
         try {
             c = getConecction();
@@ -88,6 +88,159 @@ public class Conection {
 
         return operario;
     }
+
+    public static Estudiante getEstudiante(String correo){
+        Estudiante estudiante = new Estudiante();
+        try {
+            c = getConecction();
+            cstm = c.prepareCall("SELECT * FROM estudiantes WHERE emailEstudiante = ? ");
+            cstm.setString(1, correo);
+            ResultSet rs = cstm.executeQuery();
+
+            if (rs.next()) {
+                estudiante.setId(rs.getInt("idEstudiante"));
+                estudiante.setEmailEstudiante(rs.getString("emailEstudiante"));
+                estudiante.setNombre(rs.getString("nombreEstudiante"));
+                estudiante.setApellido(rs.getString("apellidoEstudiante"));
+                estudiante.setSemestre(rs.getInt("semestreEstudiante"));
+                estudiante.setDiscapacidad(rs.getBoolean("discapacidadEstudiante"));
+                estudiante.setPassword(rs.getString("password"));
+            }
+    
+            rs.close(); 
+            cstm.close();
+            c.close(); 
+
+            
+        } catch (Exception e) {
+            System.out.println("Error en obtener el usuario " + e.getMessage());
+        }
+
+        return estudiante;
+    }
+
+
+    public static boolean insertarCita(int idEstudiante, int idTutor){
+        boolean result = false;
+        try {
+            c = getConecction();
+
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            // Primero, inserta la dirección en la tabla tbl_direccion
+            String insertDireccionSQL = "INSERT INTO cita (cancelada, fecha, llega, idEstudiante, idTutor) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement direccionPS = c.prepareStatement(insertDireccionSQL, Statement.RETURN_GENERATED_KEYS)) {
+                direccionPS.setBoolean(1, false);
+                direccionPS.setTimestamp(2, timestamp);
+                direccionPS.setBoolean(3, false);
+                direccionPS.setInt(4, idEstudiante);
+                direccionPS.setInt(5, idTutor);
+
+                int rowsAffected = direccionPS.executeUpdate();
+                if (rowsAffected == 1) {
+                    // La inserción en tbl_direccion fue exitosa, obten el ID generado
+                    ResultSet generatedKeys = direccionPS.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        int idDireccion = generatedKeys.getInt(1);
+
+                        System.out.println("Se genero la cita con el id: " + idDireccion);
+
+                        result = true;
+                    } else {
+                        System.out.println("No se pudo obtener el ID de la cita.");
+                    }
+                } else {
+                    System.out.println("No se pudo insertar la cita en la tabla de citas ");
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        
+
+        return result;
+    }
+
+
+    public static boolean cancelarCita(int idEstudiante){
+        boolean result = false;
+        try {
+            c = getConecction();
+            // Primero, inserta la dirección en la tabla tbl_direccion
+            String insertDireccionSQL = "UPDATE cita SET cancelada = ? WHERE idEstudiante = ? AND llega = ?";
+            try (PreparedStatement updatePS = c.prepareStatement(insertDireccionSQL, Statement.RETURN_GENERATED_KEYS)) {
+                updatePS.setBoolean(1, true);
+                updatePS.setInt(2, idEstudiante);
+                updatePS.setBoolean(3, true);
+
+                int rowsAffected = updatePS.executeUpdate();
+                if (rowsAffected == 1) {
+                    // La inserción en tbl_direccion fue exitosa, obten el ID generado
+                    ResultSet generatedKeys = updatePS.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        int idDireccion = generatedKeys.getInt(1);
+
+                        System.out.println("Se cancelo la cita con el id: " + idDireccion + " Del estudiante " + idEstudiante);
+
+                        result = true;
+                    } else {
+                        System.out.println("No se pudo cancelar la cita.");
+                    }
+                } else {
+                    System.out.println("No se pudo cancelar la cita");
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        
+
+        return result;
+    }
+
+    public static boolean insertarEstudiante(Estudiante estudiante){
+        boolean result = false;
+                
+        try {
+             c = getConecction();
+            
+            // Primero, inserta la dirección en la tabla tbl_direccion
+            String insertDireccionSQL = "INSERT INTO estudiantes (nombreEstudiante, apellidoEstudiante, semestreEstudiante, discapacidadEstudiante, password, emailEstudiante) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement direccionPS = c.prepareStatement(insertDireccionSQL, Statement.RETURN_GENERATED_KEYS)) {
+                direccionPS.setString(1, estudiante.getNombre());
+                direccionPS.setString(2, estudiante.getApellido());
+                direccionPS.setInt(3, estudiante.getSemestre());
+                direccionPS.setBoolean(4, estudiante.getDiscapacidad());
+                direccionPS.setString(5, estudiante.getPassword());
+                direccionPS.setString(5, estudiante.getEmailEstudiante());
+
+                int rowsAffected = direccionPS.executeUpdate();
+                if (rowsAffected == 1) {
+                    // La inserción en tbl_direccion fue exitosa, obten el ID generado
+                    ResultSet generatedKeys = direccionPS.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        int idDireccion = generatedKeys.getInt(1);
+
+                        System.out.println("Se genero el estudiante con el id: " + idDireccion);
+
+                        result = true;
+                    } else {
+                        System.out.println("No se pudo obtener el ID de dirección generado.");
+                    }
+                } else {
+                    System.out.println("No se pudo insertar la dirección en tbl_direccion");
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        
+
+        return result;
+    }
+
+
+
 
     // public static UserClient getUserClient(String numClient){
     //     UserClient userClient = new UserClient();
