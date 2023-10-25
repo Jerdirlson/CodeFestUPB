@@ -26,5 +26,18 @@ public class ServiceEstudiante extends UnicastRemoteObject implements SkeletonEs
 
         return estudiante;
     }
+
+    @Override
+    public boolean estudianteLlego(Estudiante estudiante) throws RemoteException {
+        boolean bool = false;
+        try {
+            bool = Conection.cancelarCita(estudiante.getId());
+        } catch (Exception e) {
+            System.out.println("Error" + e.getMessage());
+        }
+
+        return bool;
+
+    }
     
 }

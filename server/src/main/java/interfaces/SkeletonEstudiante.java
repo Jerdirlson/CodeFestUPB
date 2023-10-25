@@ -8,5 +8,7 @@ import entidades.Estudiante;
 public interface SkeletonEstudiante extends Remote{
     
     public Estudiante getEstudiante(String email, String contraseña) throws RemoteException;
+
+    public boolean estudianteLlego(Estudiante estudiante) throws RemoteException;
     
 }
