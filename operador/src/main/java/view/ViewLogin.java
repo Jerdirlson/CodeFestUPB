@@ -9,6 +9,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,7 +23,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * Class which creates the start view
+ * Class which creates the start views
  * @author Juan David Patiño
  *
  */
@@ -40,8 +44,8 @@ public class ViewLogin {
     public TextField password;
     //Imagenes
     ImageView logo;
-    Image picture = new Image("file:operador\\src\\main\\java\\images\\logoUPB.png");
-    Image fondoImagen = new Image("file:operador\\src\\main\\java\\images\\IMAGENQUESIRVE.jpg");
+    Image picture = new Image("file:src\\main\\java\\images\\logoUPB.png");
+    Image fondoImagen = new Image("file:src\\main\\java\\images\\IMAGENQUESIRVE.jpg");
     ImageView fondoUPB = new ImageView(fondoImagen);
     //LABELS(TEXTO EN PANTALLA)
     Label usuarioLabel;
@@ -63,8 +67,12 @@ public class ViewLogin {
 
     //  Image image = new Image("file:/ruta/a/tu/imagen.png");
     //Background
-    BackgroundFill colorFondo = new BackgroundFill(colorSand,null,null);
-    Background fondo = new Background(colorFondo);
+    BackgroundImage backgroundImage = new BackgroundImage(fondoImagen,
+            BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+            BackgroundPosition.DEFAULT,
+            new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+
+    Background fondo = new Background(backgroundImage);
 
     public ViewLogin() {
         window = new Stage();
@@ -89,8 +97,8 @@ public class ViewLogin {
         welcome.setScaleY(2);
         welcome.setScaleX(2);
         //-----------
-        logo.setFitHeight(320);	//Alto
-        logo.setFitWidth(280);	//Ancho
+        logo.setFitHeight(260);	//Alto
+        logo.setFitWidth(220);	//Ancho
         //-----------
         panelPrincipal.setBackground(fondo);
         //-------------------------
@@ -119,7 +127,7 @@ public class ViewLogin {
         window.show();
     }
 
-    public  void login() {
+    public void login() {
 
         //Crear Panel
         panelLogin = new StackPane();
@@ -133,7 +141,7 @@ public class ViewLogin {
         usuario = new TextField();
         password = new TextField();
         //--------------------------
-        usuarioLabel = new Label("Usuario: ");
+        usuarioLabel = new Label("Email: ");
         contrasenaLabel = new Label("Contraseña: ");
 
         //--------------------------
@@ -145,8 +153,8 @@ public class ViewLogin {
 
         //Propiedades
 
-        logo.setFitHeight(320);	//Alto
-        logo.setFitWidth(280);	//Ancho
+        logo.setFitHeight(260);	//Alto
+        logo.setFitWidth(220);	//Ancho
         //-------------------------
         panelLogin.setBackground(fondo);
         //-------------------------
