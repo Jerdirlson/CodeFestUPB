@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -137,7 +138,7 @@ public class ViewOperador {
         logoClientes = new ImageView(picture);
         initOperador();
         initAgregarCita();
-        intiCancelarCita();
+        //intiCancelarCita();
         // initAgregarEstudiante();
         // initBuscarCliente();
         // initShowMenu();
@@ -255,49 +256,6 @@ public class ViewOperador {
         estudiantesFoundedList.setPrefHeight(40);
         estudiantesFoundedList.setPrefWidth(40);
 
-        // -------------------------
-        rectangleToDecorateBuscadorDeClientes.setFill(colorBeige);
-        rectangleToDecorateBuscadorDeClientes.setStroke(Color.BLACK); // Color del borde
-        rectangleToDecorateBuscadorDeClientes.setStrokeWidth(1); // Grosor del borde
-        rectangleToDecorateBuscadorDeClientes.toBack();
-        buscarClienteContendor.getChildren().addAll(estudiantesFoundedList);
-        buscarClienteContendor.getChildren().addAll(rectangleToDecorateBuscadorDeClientes, goBackToOption,
-                busquedaDeEstudiantes);
-        //
-        buscarClienteContendor.setMargin(busquedaDeEstudiantes, new Insets(300, 500, 400, 300)); // establecer un margen
-        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        buscarClienteContendor.setMargin(estudiantesFoundedList, new Insets(350, 500, 200, 300)); // establecer un
-                                                                                                  // margen
-        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        buscarClienteContendor.setMargin(goBackToOption, new Insets(500, 550, 0, 0)); // establecer un margen
-        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        estudiantesFoundedList.toFront();
-        buscarEstudianteView = new Scene(buscarClienteContendor, 1080, 720);
-        // buscarEstudianteView.getStylesheets().add("style.css");
-    }
-
-    public void intiCancelarCita() {
-        StackPane buscarClienteContendor = new StackPane();
-        buscarClienteContendor.setBackground(fondo);
-        // -------------------------
-        goBackToOption = new Button("Atras");
-        goBackToOption.setId("buttonBack");
-        busquedaDeEstudiantes = new TextField("Buscar Estudiante");
-        Rectangle rectangleToDecorateBuscadorDeClientes = new Rectangle(700, 400);
-        estudiantesFounded = FXCollections.observableArrayList();
-
-        // Crear un ListView y configurarlo con la lista observable
-        estudiantesFoundedList = new ListView<>(estudiantesFounded);
-        // Propiedades
-        goBackToOption.setScaleX(2.5);
-        goBackToOption.setScaleY(2.5);
-
-        busquedaDeEstudiantes.setPrefHeight(10);
-        busquedaDeEstudiantes.setPrefWidth(400);
-
-        estudiantesFoundedList.setPrefHeight(40);
-        estudiantesFoundedList.setPrefWidth(40);
-
         // AGREGAR CITAS
         idEstudianteTextLabel = new TextField("Id");
         buttonAgregarCita = new Button("Agendar Cita");
@@ -308,7 +266,6 @@ public class ViewOperador {
         idEstudianteTextLabel.setPrefHeight(10);
         idEstudianteTextLabel.setPrefWidth(300);
         buscarClienteContendor.getChildren().addAll(idEstudianteTextLabel, buttonAgregarCita);
-
         // .-------
         buscarClienteContendor.setMargin(buttonAgregarCita, new Insets(300, 0, 0, 500)); // establecer un margen
         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
@@ -335,6 +292,16 @@ public class ViewOperador {
         buttonAgregarCita.toFront();
         buscarEstudianteView = new Scene(buscarClienteContendor, 1080, 720);
         // buscarEstudianteView.getStylesheets().add("style.css");
+    }
+
+    public void intiCancelarCita() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("CANCELACION");
+        alert.setHeaderText("CITA CANCELADA ");
+        alert.setContentText(
+                "TASDFAGASDHGSAHH!" + "\n"
+                        + "...");
+        alert.showAndWait();
     }
 
     public void switchScene(Scene scene) {

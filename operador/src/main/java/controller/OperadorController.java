@@ -1,6 +1,7 @@
 package controller;
 
 import java.rmi.RemoteException;
+import java.util.Random;
 
 import entidades.Estudiante;
 import javafx.scene.control.Alert;
@@ -25,9 +26,11 @@ public class OperadorController {
             if (event.getCode() == KeyCode.ENTER) {
                 Estudiante estudianteTemp = modelOperaodr.getEstudiante(viewOperador.busquedaDeEstudiantes.getText());
                 if (estudianteTemp.getNombre() != null) { // metodo para buscar cliente en la base de datos
-                    viewOperador.estudiantesFounded.addAll("Nombre: "+estudianteTemp.getNombre(),"Apellido: "+ estudianteTemp.getApellido(),
-                            "Semestre: "+String.valueOf(estudianteTemp.getSemestre()),"Discapacidad: "+ estudianteTemp.getDiscapacidad(), 
-                            "Password: "+estudianteTemp.getPassword());
+                    viewOperador.estudiantesFounded.addAll("Nombre: " + estudianteTemp.getNombre(),
+                            "Apellido: " + estudianteTemp.getApellido(),
+                            "Semestre: " + String.valueOf(estudianteTemp.getSemestre()),
+                            "Discapacidad: " + estudianteTemp.getDiscapacidad(),
+                            "Password: " + estudianteTemp.getPassword());
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("WOw!");
@@ -88,6 +91,23 @@ public class OperadorController {
 
         });
 
+        viewOperador.buttonAgregarCita.setOnAction(actionEvent -> {
+            int idTutor = new Random().nextInt(3);
+            try {
+                System.out.println(viewOperador.idEstudianteTextLabel.getText());   //Error en el if
+                if (!modelOperaodr.addCita(Integer.valueOf(viewOperador.idEstudianteTextLabel.getText()), idTutor)) {
+                    Alert addCitAlert = new Alert(Alert.AlertType.INFORMATION);
+                    addCitAlert.setTitle("Added!");
+                    addCitAlert.setHeaderText("Cita creada ");
+                    addCitAlert.setContentText(
+                            "El tiempo es oro!" + "\n"
+                                    + "CAC-UPB...");
+                    addCitAlert.showAndWait();
+                }
+            } catch (NumberFormatException | RemoteException e) {
+                System.out.println("kasdjffj");
+            }
+        });
         viewOperador.goBackToOption.setOnAction(actionEvent -> {
             viewOperador.switchScene(viewOperador.optionPanel);
         });
