@@ -4,7 +4,7 @@ import controller.StartController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 /**
- * Main Class for 'Modulo Operador'
+ * Main Class for 'Modulo Estudiante'
  *
  * Runs the program
  *

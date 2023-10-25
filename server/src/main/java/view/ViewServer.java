@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  * @author Juan David Patiño
  *
  */
-public class ViewLogin {
+public class ViewServer {
     public Stage window;
     // Escenas
     Scene mainMenu, login;
@@ -45,10 +45,9 @@ public class ViewLogin {
     public TextField password;
     // Imagenes
     ImageView logo;
-    Image picture = new Image("file:estudiante\\src\\main\\java\\images\\logoUPB.png");
-    Image fondoImagen = new Image("file:estudiante\\src\\main\\java\\images\\IMAGENQUESIRVE.jpg");
+    Image picture = new Image("file:server\\src\\main\\java\\images\\logoUPB.png");
+    Image fondoImagen = new Image("file:server\\src\\main\\java\\images\\IMAGENQUESIRVE.jpg");
     ImageView fondoUPB = new ImageView(fondoImagen);
-
     // LABELS(TEXTO EN PANTALLA)
     Label usuarioLabel;
     Label contrasenaLabel;
@@ -69,14 +68,14 @@ public class ViewLogin {
 
     // Image image = new Image("file:/ruta/a/tu/imagen.png");
     // Background
-    BackgroundFill colorFondo = new BackgroundFill(colorSand, null, null);
     BackgroundImage backgroundImage = new BackgroundImage(fondoImagen,
             BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
             BackgroundPosition.DEFAULT,
             new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
 
     Background fondo = new Background(backgroundImage);
-    public ViewLogin() {
+
+    public ViewServer() {
         window = new Stage();
         start();
     }
@@ -100,8 +99,8 @@ public class ViewLogin {
         welcome.setScaleY(2);
         welcome.setScaleX(2);
         // -----------
-        logo.setFitHeight(240); // Alto
-        logo.setFitWidth(220); // Ancho
+        logo.setFitHeight(320); // Alto
+        logo.setFitWidth(280); // Ancho
         // -----------
         panelPrincipal.setBackground(fondo);
         // -------------------------
@@ -112,6 +111,10 @@ public class ViewLogin {
         rectangleStart.setStrokeWidth(1); // Grosor del borde
 
         //
+        welcome.setOnAction(event -> {
+            login();
+
+        });
 
         // Organizando items
         panelPrincipal.setMargin(welcome, new Insets(225, 0, 0, 0)); // establecer un margen
@@ -123,10 +126,11 @@ public class ViewLogin {
         // mainMenu.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         window.setScene(mainMenu);
-        window.setTitle("CAC-UPB"); // Estableciendo titulo
+        window.setTitle("Oasis"); // Estableciendo titulo
         window.show();
     }
-    public void login() {
+
+    public  void login() {
 
         // Crear Panel
         panelLogin = new StackPane();
@@ -139,7 +143,7 @@ public class ViewLogin {
         usuario = new TextField();
         password = new TextField();
         // --------------------------
-        usuarioLabel = new Label("ID: ");
+        usuarioLabel = new Label("Usuario: ");
         contrasenaLabel = new Label("Contraseña: ");
 
         // --------------------------

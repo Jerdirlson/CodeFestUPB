@@ -33,14 +33,16 @@ public class ViewLogin {
     VBox contenedorLoginPassWord;
 
     //Botones
-    Button welcome;
+    public Button welcome;
     public Button submit;
     //TextField
     public TextField usuario;
     public TextField password;
     //Imagenes
     ImageView logo;
-    Image picture = new Image("file:src\\\\main\\\\java\\\\co\\\\edu\\\\upb\\\\oasis\\\\images\\\\logo\\\\OasisFondo.png");
+    Image picture = new Image("file:operador\\src\\main\\java\\images\\logoUPB.png");
+    Image fondoImagen = new Image("file:operador\\src\\main\\java\\images\\IMAGENQUESIRVE.jpg");
+    ImageView fondoUPB = new ImageView(fondoImagen);
     //LABELS(TEXTO EN PANTALLA)
     Label usuarioLabel;
     Label contrasenaLabel;
@@ -113,11 +115,11 @@ public class ViewLogin {
         // mainMenu.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         window.setScene(mainMenu);
-        window.setTitle("Oasis"); 	//Estableciendo titulo
+        window.setTitle("CAC-UPB"); 	//Estableciendo titulo
         window.show();
     }
 
-    private void login() {
+    public  void login() {
 
         //Crear Panel
         panelLogin = new StackPane();

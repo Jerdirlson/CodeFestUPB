@@ -1,9 +1,12 @@
 package controller;
 
-import view.ViewLogin;
+import view.ViewServer;
 
 public class StartController {
-    public StartController(){
-        ViewLogin login = new ViewLogin();
+    public StartController() {
+        ViewServer login = new ViewServer();
+        login.welcome.setOnAction(actionEvent -> {
+            login.login();
+        });
     }
 }

@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  * @author Juan David Patiño
  *
  */
-public class ViewLogin {
+public class ViewEstudiante {
     public Stage window;
     // Escenas
     Scene mainMenu, login;
@@ -38,7 +38,7 @@ public class ViewLogin {
     VBox contenedorLoginPassWord;
 
     // Botones
-    public Button welcome;
+    Button welcome;
     public Button submit;
     // TextField
     public TextField usuario;
@@ -76,12 +76,12 @@ public class ViewLogin {
             new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
 
     Background fondo = new Background(backgroundImage);
-    public ViewLogin() {
+    public ViewEstudiante() {
         window = new Stage();
-        start();
+        initVerCitas();
     }
 
-    private void start() {
+    private void initVerCitas() {
         // Crear Panel
         panelPrincipal = new StackPane();
         // Crear los objetos
@@ -125,75 +125,5 @@ public class ViewLogin {
         window.setScene(mainMenu);
         window.setTitle("CAC-UPB"); // Estableciendo titulo
         window.show();
-    }
-    public void login() {
-
-        // Crear Panel
-        panelLogin = new StackPane();
-        // ------------
-        contenedorLoginPassWord = new VBox();
-        contenedorLoginPassWord.setSpacing(75);
-        contenedorLoginPassWord.setAlignment(Pos.CENTER);
-
-        // Crear los objetos
-        usuario = new TextField();
-        password = new TextField();
-        // --------------------------
-        usuarioLabel = new Label("ID: ");
-        contrasenaLabel = new Label("Contraseña: ");
-
-        // --------------------------
-        rectangleLogin = new Rectangle(350, 180);
-
-        // Agregando elementos
-        contenedorLoginPassWord.getChildren().addAll(usuario, password);
-        panelLogin.getChildren().addAll(logo, rectangleStart, contenedorLoginPassWord, usuarioLabel, contrasenaLabel,
-                rectangleLogin, submit);
-
-        // Propiedades
-
-        logo.setFitHeight(320); // Alto
-        logo.setFitWidth(280); // Ancho
-        // -------------------------
-        panelLogin.setBackground(fondo);
-        // -------------------------
-        rectangleLogin.toBack();
-        rectangleLogin.setFill(colorOrange);
-        // ----------------------
-        rectangleStart.toBack();
-        rectangleStart.setFill(colorBeige);
-        // -------------------------
-        usuario.setPrefWidth(10);
-        usuario.setPrefHeight(5);
-        // ------------------------
-        password.setPrefWidth(10);
-        password.setPrefHeight(5);
-        // ------------------------
-        usuarioLabel.setFont(new Font(20));
-        contrasenaLabel.setFont(new Font(20));
-        // -------------------------
-        submit.setScaleX(2);
-        submit.setScaleY(2);
-
-        // HACER USO DE JSON PARA VERIFICAR DATOS Y ENTONCES DAR CREACION A MODULOS
-
-        // Organizando usuario y contraseña
-        panelLogin.setMargin(contenedorLoginPassWord, new Insets(0, 250, 0, 525));// establecer un margen
-                                                                                  // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        panelLogin.setMargin(logo, new Insets(0, 375, 0, 0)); // establecer un margen (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        panelLogin.setMargin(usuarioLabel, new Insets(0, 0, 150, 50)); // establecer un margen
-                                                                       // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        panelLogin.setMargin(contrasenaLabel, new Insets(50, 0, 0, 75)); // establecer un margen
-                                                                         // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        panelLogin.setMargin(rectangleLogin, new Insets(0, 0, 0, 285)); // establecer un margen
-                                                                        // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-        panelLogin.setMargin(submit, new Insets(300, 0, 0, 285)); // establecer un margen
-                                                                  // (ABAJO,IZQUIERDA,ARRIBA,DERECHA)
-
-        login = new Scene(panelLogin, 1080, 720);
-        // login.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-        window.setScene(login);
-
     }
 }
